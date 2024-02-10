@@ -22,16 +22,21 @@ void sideWings(){
     latch = false; // once button is released then release the latch too
   }
 }
-
+void back_wings(bool value) {
+  back_wing_R.set_value(value);
+  back_wing_L.set_value(value);
+}
 okapi::ControllerButton backWingsButton(okapi::ControllerDigital::down);
 bool toggleBack = false;
 bool latchBack = false;
 
 void backWings() {
   if (toggleBack) {
-    back_wings.set_value(true);
+    back_wing_R.set_value(true);
+    back_wing_L.set_value(true);
   } else {
-    back_wings.set_value(false);
+    back_wing_R.set_value(false);
+    back_wing_L.set_value(false);
   }
 
   if (backWingsButton.isPressed()) {

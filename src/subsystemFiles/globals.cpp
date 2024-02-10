@@ -13,7 +13,7 @@ pros::MotorGroup right_side_motors({right_front_motor, right_mid_motor, right_ba
 
 // MOTORS
 pros::Motor intake_motor(4, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_COUNTS);
-pros::Motor kicker_motor(5, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_COUNTS);
+pros::Motor kicker_motor(5, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_COUNTS);
 
 // CONTROLLER
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
@@ -21,11 +21,13 @@ pros::Controller controller(pros::E_CONTROLLER_MASTER);
 // SENSORS
 pros::Imu inertial(21);
 pros::Rotation kickerRot(7);
+pros::ADIDigitalIn autoSwitch('A');
 
 // PNUEMATICS
 pros::ADIDigitalOut wings('H');
 pros::ADIDigitalOut bar_hang('G');
-pros::ADIDigitalOut back_wings('F');
+pros::ADIDigitalOut back_wing_R('F');
+pros::ADIDigitalOut back_wing_L('E');
 
 // LIGHTS ADI expander on port ?
 

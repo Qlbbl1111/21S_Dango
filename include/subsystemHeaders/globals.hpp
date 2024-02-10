@@ -22,11 +22,13 @@ extern pros::Controller controller;
 // SENSORS
 extern pros::Imu inertial;
 extern pros::Rotation kickerRot;
+extern pros::ADIDigitalIn autoSwitch;
 
 // PNUEMATICS
 extern pros::ADIDigitalOut wings;
 extern pros::ADIDigitalOut bar_hang;
-extern pros::ADIDigitalOut back_wings;
+extern pros::ADIDigitalOut back_wing_R;
+extern pros::ADIDigitalOut back_wing_L;
 
 // LIGHTS
 

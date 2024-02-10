@@ -1,18 +1,32 @@
 #include "main.h"
+#include "autoSelect/selection.h"
+#include "pros/misc.h"
 
+okapi::ControllerButton motor_temp_button(okapi::ControllerDigital::X);
  void motorTemp(){
   while(true) {
   float motorTemps = (left_front_motor.get_temperature() + left_mid_motor.get_temperature() + left_back_motor.get_temperature() + right_front_motor.get_temperature()+ right_mid_motor.get_temperature() + right_back_motor.get_temperature())/6;
+  float kickerMotorTemp = kicker_motor.get_temperature();
   //std::cout << motorTemps << std::endl;
-  
-  if (motorTemps <= 30) {
-    controller.print(0, 0, "Drive: COLD, %.2f", motorTemps);
-  } else if (motorTemps > 30 && motorTemps <= 45) {
-    controller.print(0, 0, "Drive: WARM, %.2f", motorTemps);
-  } else if (motorTemps > 45) {
-    controller.print(0, 0, "Drive: HOT, %.2f", motorTemps);
-  }
-  pros::delay(2000);
+  if (motor_temp_button.isPressed()){
+    if (kickerMotorTemp <= 30) {
+      controller.print(0, 0, "Kicker: COLD, %.2f", kickerMotorTemp);
+      } else if (kickerMotorTemp > 30 && kickerMotorTemp <= 45) {
+      controller.print(0, 0, "Kicker: WARM, %.2f", kickerMotorTemp);
+      } else if (kickerMotorTemp > 45) {
+      controller.print(0, 0, "Kicker: HOT, %.2f", kickerMotorTemp);
+      }
+      pros::delay(2000);
+    } else {
+      if (motorTemps <= 30) {
+      controller.print(0, 0, "Drive: COLD, %.2f", motorTemps);
+      } else if (motorTemps > 30 && motorTemps <= 45) {
+      controller.print(0, 0, "Drive: WARM, %.2f", motorTemps);
+      } else if (motorTemps > 45) {
+      controller.print(0, 0, "Drive: HOT, %.2f", motorTemps);
+      }
+      pros::delay(2000);
+    }
   }
 }
 
@@ -27,7 +41,9 @@ void initialize() {
 	chassis.calibrate();
 	kickerRot.reset_position();
 	kickerRot.set_position(0);
-
+  selector::init();
+  pros::Task temps(motorTemp);
+/*
 	// thread to for brain screen and position logging
     pros::Task screenTask([&]() {
         lemlib::Pose pose(0, 0, 0);
@@ -42,7 +58,7 @@ void initialize() {
             pros::delay(50);
         }
     });
-	pros::Task temps(motorTemp);
+*/
 }
 
 /**
@@ -63,6 +79,9 @@ void disabled() {}
  */
 void competition_initialize() {}
 
+void auto_selector() {
+}
+
 /**
  * Runs the user autonomous code. This function will be started in its own task
  * with the default priority and stack size whenever the robot is enabled via
@@ -75,7 +94,18 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-  skillsAuton();
+  //red
+  if(selector::auton == 1)  closeWP();  
+  if(selector::auton == 2)  farWP(); 
+  if(selector::auton == 3)  sixBall();
+  if(selector::auton == 4)  nothing(); 
+  //blue
+  if(selector::auton == -1)  closeWP();  
+  if(selector::auton == -2)  farWP(); 
+  if(selector::auton == -3)  sixBall();
+  if(selector::auton == -4)  nothing(); 
+  //skills
+  if(selector::auton == 0)  skillsAuton();
 }
 
 /**

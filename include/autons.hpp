@@ -8,4 +8,4 @@ void closeWP();
 
 void farWP();
 
-void closeElim();
+void nothing();

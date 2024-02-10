@@ -19,7 +19,13 @@ void set_tank(int left, int right) {
 }
 
 float active_brake_kp = 70;
+bool op_started = true;
 void driveControl(int l_stick, int r_stick) {
+    if (op_started) {
+        left_back_motor.tare_position();
+        right_back_motor.tare_position();
+        op_started = false;
+    }
         //left side
         if (abs(l_stick) > 5) { // Threshold if joysticks don't come back to perfect 0
             left_side_motors = curve(l_stick);
