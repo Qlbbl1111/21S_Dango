@@ -13,7 +13,7 @@ pros::MotorGroup right_side_motors({right_front_motor, right_mid_motor, right_ba
 
 // MOTORS
 pros::Motor intake_motor(4, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_COUNTS);
-pros::Motor kicker_motor(5, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_COUNTS);
+pros::Motor kicker_motor(6, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_COUNTS);
 
 // CONTROLLER
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
@@ -29,7 +29,8 @@ pros::ADIDigitalOut bar_hang('G');
 pros::ADIDigitalOut back_wing_R('F');
 pros::ADIDigitalOut back_wing_L('E');
 
-// LIGHTS ADI expander on port ?
+// LIGHTS ADI expander on port 7
+pros::ADILed left_drive_led(1, 39);
 
 //GLOABALS
 bool shift() {

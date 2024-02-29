@@ -31,7 +31,7 @@ extern pros::ADIDigitalOut back_wing_R;
 extern pros::ADIDigitalOut back_wing_L;
 
 // LIGHTS
-
+extern pros::ADILed left_drive_led;
 
 // GLOBALS
 bool shift();

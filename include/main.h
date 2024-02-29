@@ -79,6 +79,7 @@ void opcontrol(void);
 #include "subsystemHeaders/intake.hpp"
 #include "subsystemHeaders/kicker.hpp"
 #include "subsystemHeaders/wings.hpp"
+#include "subsystemHeaders/lights.hpp"
 #endif
 
 #endif  // _PROS_MAIN_H_

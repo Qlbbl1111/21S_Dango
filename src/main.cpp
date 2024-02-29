@@ -10,20 +10,20 @@ okapi::ControllerButton motor_temp_button(okapi::ControllerDigital::X);
   //std::cout << motorTemps << std::endl;
   if (motor_temp_button.isPressed()){
     if (kickerMotorTemp <= 30) {
-      controller.print(0, 0, "Kicker: COLD, %.2f", kickerMotorTemp);
+      controller.print(0, 0, "Kicker: COLD, %.0lf°C", kickerMotorTemp);
       } else if (kickerMotorTemp > 30 && kickerMotorTemp <= 45) {
-      controller.print(0, 0, "Kicker: WARM, %.2f", kickerMotorTemp);
+      controller.print(0, 0, "Kicker: WARM, %.0lf°C", kickerMotorTemp);
       } else if (kickerMotorTemp > 45) {
-      controller.print(0, 0, "Kicker: HOT, %.2f", kickerMotorTemp);
+      controller.print(0, 0, "Kicker: HOT, %.0lf°C", kickerMotorTemp);
       }
       pros::delay(2000);
     } else {
       if (motorTemps <= 30) {
-      controller.print(0, 0, "Drive: COLD, %.2f", motorTemps);
+      controller.print(0, 0, "Drive: COLD, %.0lf°C", motorTemps);
       } else if (motorTemps > 30 && motorTemps <= 45) {
-      controller.print(0, 0, "Drive: WARM, %.2f", motorTemps);
+      controller.print(0, 0, "Drive: WARM, %.0lf°C", motorTemps);
       } else if (motorTemps > 45) {
-      controller.print(0, 0, "Drive: HOT, %.2f", motorTemps);
+      controller.print(0, 0, "Drive: HOT, %.0lf°C", motorTemps);
       }
       pros::delay(2000);
     }
@@ -41,9 +41,12 @@ void initialize() {
 	chassis.calibrate();
 	kickerRot.reset_position();
 	kickerRot.set_position(0);
-  selector::init();
+  //selector::init();
   pros::Task temps(motorTemp);
-/*
+
+  left_drive_led.set_all(0x808080);
+  left_drive_led.update();
+
 	// thread to for brain screen and position logging
     pros::Task screenTask([&]() {
         lemlib::Pose pose(0, 0, 0);
@@ -58,7 +61,7 @@ void initialize() {
             pros::delay(50);
         }
     });
-*/
+
 }
 
 /**
@@ -95,6 +98,7 @@ void auto_selector() {
  */
 void autonomous() {
   //red
+  selector::auton = 5;
   if(selector::auton == 1)  closeWP();  
   if(selector::auton == 2)  farWP(); 
   if(selector::auton == 3)  sixBall();
@@ -106,6 +110,7 @@ void autonomous() {
   if(selector::auton == -4)  nothing(); 
   //skills
   if(selector::auton == 0)  skillsAuton();
+  else skillsAuton();
 }
 
 /**
