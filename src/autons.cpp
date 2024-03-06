@@ -178,33 +178,38 @@ chassis.waitUntilDone();
 }
 
 
-ASSET(score_left_side_txt);
+ASSET(drivearound_txt);
 ASSET(score_left_front_txt);
 ASSET(score_middle_txt);
 ASSET(score_right_front_txt);
 void skillsAuton() {
     chassis.setPose(-46.8, -58.6, 135); //set robots starting position
 
-    chassis.moveToPoint(-60, -45, 5000, false);
+    chassis.moveToPoint(-60, -45, 2000, false);
     chassis.waitUntilDone();
     chassis.turnTo(46, -23, 1000);
     chassis.waitUntilDone();
-    chassis.moveToPoint(-65.7, -46.5, 2000); //postion the robot to touch bar for match loading
+    chassis.moveToPoint(-65.7, -46.5, 1000); //postion the robot to touch bar for match loading
     chassis.waitUntilDone();
     kicker_motor = 127;
     back_wing_R.set_value(true); //make sure the robot is touching the bar
-    pros::delay(2500); //run the kiker for 23 seconds to matchload all 44 balls
+    pros::delay(2200); //run the kicker for 23 seconds to matchload all 44 balls
     kicker_motor = 0;
     back_wing_R.set_value(false);
-    chassis.moveToPoint(-60, -45, 5000);
+    chassis.moveToPoint(-60, -45, 2000);
     chassis.waitUntilDone();
 
     //score the 2 red preloads in the side of the blue goal
     chassis.turnTo(-60, -70, 1000);
     chassis.waitUntilDone();
-    chassis.moveToPoint(-60, -24, 3000, false);
+    chassis.moveToPoint(-60, -24, 2000, false);
     chassis.waitUntilDone();
-    chassis.moveToPoint(-60, -37, 2000, true);
+    chassis.moveToPoint(-60, -30, 1000, true);
+    chassis.waitUntilDone();
+    chassis.moveToPoint(-60, -24, 2000, false);
+    chassis.waitUntilDone();
+    chassis.setPose(-60, -30, 180);
+    chassis.moveToPoint(-60, -37, 1000, true);
     chassis.waitUntilDone();
 
     //push balls over
@@ -223,79 +228,104 @@ void skillsAuton() {
     chassis.waitUntilDone();
 
     //drive around
-    chassis.moveToPoint(-8, 28, 5000, false);
+    chassis.moveToPoint(-8, 28, 2000, false);
     chassis.waitUntilDone();
     intake_motor = 0;
-    chassis.moveToPoint(-38, 35, 5000);
+    chassis.moveToPoint(-38, 35, 3000);
     chassis.waitUntilDone();
-    chassis.moveToPoint(-38, 58, 5000);
+    chassis.moveToPoint(-38, 58, 2000);
     chassis.waitUntilDone();
     chassis.turnTo(0, 60, 1000, false);
     chassis.waitUntilDone();
-    chassis.moveToPoint(24, 60, 5000, false);
+    chassis.moveToPoint(24, 60, 3000, false);
     chassis.waitUntilDone();
 
     //score left side
-    chassis.moveToPose(59.5, 28, 0, 2000, {.forwards=false});
+    chassis.moveToPose(59.5, 28, 0, 2000, {.forwards=false, .maxSpeed=80});
     chassis.waitUntil(12);
     back_wing_L.set_value(true);
     chassis.waitUntilDone();
     chassis.moveToPoint(59.5, 42, 3000);
     chassis.waitUntilDone();
-    chassis.moveToPoint(59.5, 28, 5000, false);
+    chassis.moveToPoint(59.5, 28, 3000, false);
     chassis.waitUntilDone();
+    chassis.waitUntilDone();
+    //chassis.setPose(59.5, 27, 0);
     back_wings(false);
 
     //score left front
-    chassis.moveToPoint(59.5, 42, 5000);
+    chassis.moveToPoint(59.5, 42, 2000);
     chassis.waitUntilDone();
-    chassis.moveToPoint(13, 33, 5000);
+    chassis.moveToPoint(13, 28, 3000);
     chassis.waitUntilDone();
-    back_wing_L.set_value(true);
-    chassis.turnTo(22, 14, 1000, false);
+    chassis.turnTo(22, 12, 1000, false);
     chassis.waitUntilDone();
-    chassis.moveToPoint(22, 14, 2000, false);
+    back_wings(true);
+    chassis.moveToPose(41, 9, 270, 3000, {.forwards=false, .maxSpeed=80});
     chassis.waitUntilDone();
-    chassis.moveToPoint(41, 14, 5000, false);
+    chassis.moveToPoint(33, 9, 1000);
+    chassis.waitUntilDone();
+    chassis.moveToPoint(41, 9, 3000, false);
     chassis.waitUntilDone();
     
 
     //score middle
-    chassis.moveToPoint(11, 14, 5000);
+    chassis.moveToPoint(13, 9, 3000);
     chassis.waitUntil(5);
     back_wings(false);
     chassis.waitUntilDone();
-    chassis.moveToPoint(0, 14, 5000, false);
+    chassis.moveToPoint(13, -6, 2000, false);
+    chassis.waitUntilDone();
+    chassis.turnTo(41, -6, 1000, false, 80);
     chassis.waitUntilDone();
     back_wings(true);
-    chassis.moveToPoint(30, 0, 3000, false);
+    chassis.moveToPoint(41, -6, 3000, false, 80);
     chassis.waitUntilDone();
-    chassis.moveToPoint(41, 0, 3000, false);
+    chassis.moveToPoint(31, -6, 1000);
     chassis.waitUntilDone();
-    chassis.moveToPoint(31, 0, 5000);
+    chassis.moveToPoint(41, -6, 3000, false);
     chassis.waitUntilDone();
-    chassis.moveToPoint(41, 0, 5000, false);
-    chassis.waitUntilDone();
-    chassis.setPose(41, 0, 270);
+    chassis.setPose(41, -2, 270);
 
     //score right front
-    chassis.moveToPoint(11, 0, 5000);
+    chassis.moveToPoint(13, -2, 3000);
     chassis.waitUntil(5);
     back_wings(false);
     chassis.waitUntilDone();
-    chassis.moveToPoint(11, -30, 5000);
+    chassis.moveToPoint(13, -30, 3000, 80);
     chassis.waitUntilDone();
-    chassis.turnTo(30, -12, 1000, false);
+    chassis.turnTo(30, -14, 1000, false, 80);
     chassis.waitUntilDone();
     back_wings(true);
-    chassis.moveToPoint(30, -12, 2000, false);
+    chassis.moveToPose(41, -14, 270, 3000, {.forwards=false, .maxSpeed=80});
     chassis.waitUntilDone();
-    chassis.moveToPoint(41, -12, 5000, false);
+    chassis.moveToPoint(30, -14, 1000, false);
     chassis.waitUntilDone();
-    chassis.moveToPoint(36, -12, 5000);
+    chassis.moveToPoint(41, -14, 2000, false);
+    chassis.waitUntilDone();
+
+    //score right side
+    chassis.moveToPoint(15, -26, 3000);
+    chassis.waitUntil(5);
+    back_wings(false);
+    chassis.waitUntilDone();
+    chassis.turnTo(34, -38, 1000, false);
+    chassis.waitUntilDone();
+    back_wing_R.set_value(true);
+    chassis.moveToPoint(34, -38, 3000, false);
+    chassis.waitUntilDone();
+    chassis.moveToPose(60, -30, 180, 3000, {.forwards=false});
     chassis.waitUntilDone();
     back_wings(false);
-    //score right side
+    chassis.moveToPoint(60, -40, 1000);
+    chassis.waitUntilDone();
+    chassis.moveToPoint(60, -30, 1000, false);
+    chassis.waitUntilDone();
+    chassis.moveToPoint(60, -35, 1000);
+    chassis.waitUntilDone();
+
+
+
 
 
 }

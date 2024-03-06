@@ -36,18 +36,20 @@ okapi::ControllerButton motor_temp_button(okapi::ControllerDigital::X);
  * All other competition modes are blocked by initialize; it is recommended
  * to keep execution time for this mode under a few seconds.
  */
+bool testing = true;
 void initialize() {
 	pros::lcd::initialize();
 	chassis.calibrate();
 	kickerRot.reset_position();
 	kickerRot.set_position(0);
-  //selector::init();
+  if (!testing) selector::init();
   pros::Task temps(motorTemp);
 
   left_drive_led.set_all(0x808080);
   left_drive_led.update();
 
 	// thread to for brain screen and position logging
+  if (testing){
     pros::Task screenTask([&]() {
         lemlib::Pose pose(0, 0, 0);
         while (true) {
@@ -61,6 +63,7 @@ void initialize() {
             pros::delay(50);
         }
     });
+  }
 
 }
 
@@ -97,8 +100,10 @@ void auto_selector() {
  * from where it left off.
  */
 void autonomous() {
+  if (testing) {
+  selector::auton = 2;
+  }
   //red
-  selector::auton = 5;
   if(selector::auton == 1)  closeWP();  
   if(selector::auton == 2)  farWP(); 
   if(selector::auton == 3)  sixBall();
@@ -110,7 +115,6 @@ void autonomous() {
   if(selector::auton == -4)  nothing(); 
   //skills
   if(selector::auton == 0)  skillsAuton();
-  else skillsAuton();
 }
 
 /**
@@ -129,7 +133,7 @@ void autonomous() {
 void opcontrol() {
 	left_front_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	left_mid_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-  	left_back_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  left_back_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	right_front_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	right_mid_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	right_back_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
