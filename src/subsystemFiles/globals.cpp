@@ -20,6 +20,7 @@ pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 // SENSORS
 pros::Imu inertial(21);
+pros::Imu inertial2(20);
 pros::Rotation kickerRot(7);
 pros::ADIDigitalIn autoSwitch('A');
 

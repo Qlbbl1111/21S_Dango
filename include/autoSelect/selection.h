@@ -4,8 +4,8 @@
 
 //selector configuration
 #define HUE 135
-#define DEFAULT 4
-#define AUTONS "closeWP", "farWP", "sixBall", "Do Nothing"
+#define DEFAULT 5
+#define AUTONS "closeWP", "farWP", "sixBall", "elimClose", "nothing"
 
 namespace selector{
 

@@ -73,13 +73,18 @@ void opcontrol(void);
 #endif
 
 #ifdef __cplusplus
-#include "autons.hpp"
+#include "autonFunctions.hpp"
 #include "subsystemHeaders/globals.hpp"
 #include "subsystemHeaders/chassis.hpp"
 #include "subsystemHeaders/intake.hpp"
 #include "subsystemHeaders/kicker.hpp"
 #include "subsystemHeaders/wings.hpp"
-#include "subsystemHeaders/lights.hpp"
+//autons
+#include "autons/fiveBall.hpp"
+#include "autons/closeWP.hpp"
+#include "autons/farWP.hpp"
+#include "autons/elimClose.hpp"
+#include "autons/skillsAuton.hpp"
 #endif
 
 #endif  // _PROS_MAIN_H_

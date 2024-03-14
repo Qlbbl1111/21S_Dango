@@ -21,6 +21,7 @@ extern pros::Controller controller;
 
 // SENSORS
 extern pros::Imu inertial;
+extern pros::Imu inertial2;
 extern pros::Rotation kickerRot;
 extern pros::ADIDigitalIn autoSwitch;
 
