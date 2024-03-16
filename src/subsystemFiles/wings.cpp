@@ -6,11 +6,21 @@ okapi::ControllerButton wingsButton(okapi::ControllerDigital::B);
 bool toggle = false;
 bool latch = false;
 
+void back_wings(bool value) {
+  back_wing_R.set_value(value);
+  back_wing_L.set_value(value);
+}
+
+void front_wings(bool value) {
+  front_wing_R.set_value(value);
+  front_wing_L.set_value(value);
+}
+
 void sideWings(){
   if (toggle) {
-    wings.set_value(true);
+    front_wings(true);
   } else {
-    wings.set_value(false);
+    front_wings(false);
   }
 
   if (wingsButton.isPressed()) {
@@ -22,21 +32,16 @@ void sideWings(){
     latch = false; // once button is released then release the latch too
   }
 }
-void back_wings(bool value) {
-  back_wing_R.set_value(value);
-  back_wing_L.set_value(value);
-}
+
 okapi::ControllerButton backWingsButton(okapi::ControllerDigital::down);
 bool toggleBack = false;
 bool latchBack = false;
 
 void backWings() {
   if (toggleBack) {
-    back_wing_R.set_value(true);
-    back_wing_L.set_value(true);
+    back_wings(true);
   } else {
-    back_wing_R.set_value(false);
-    back_wing_L.set_value(false);
+    back_wings(false);
   }
 
   if (backWingsButton.isPressed()) {
@@ -52,25 +57,4 @@ void backWings() {
 void setWings() { 
   sideWings();
   backWings();
-}
-
-okapi::ControllerButton barHangButton(okapi::ControllerDigital::A);
-bool toggleBar = false;
-bool latchBar = false;
-
-void setBarHang() {
-  if (toggleBar) {
-    bar_hang.set_value(true);
-  } else {
-    bar_hang.set_value(false);
-  }
-
-  if (barHangButton.isPressed()) {
-    if (!latchBar) { // if latch false, toggle one time and set latch true
-      toggleBar = !toggleBar;
-      latchBar = true;
-    }
-  } else {
-    latchBar = false; // once button is released then release the latch too
-  }
 }

@@ -26,8 +26,8 @@ extern pros::Rotation kickerRot;
 extern pros::ADIDigitalIn autoSwitch;
 
 // PNUEMATICS
-extern pros::ADIDigitalOut wings;
-extern pros::ADIDigitalOut bar_hang;
+extern pros::ADIDigitalOut front_wing_R;
+extern pros::ADIDigitalOut front_wing_L;
 extern pros::ADIDigitalOut back_wing_R;
 extern pros::ADIDigitalOut back_wing_L;
 

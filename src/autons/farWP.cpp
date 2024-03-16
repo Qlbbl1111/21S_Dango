@@ -6,7 +6,7 @@ intake_motor = 127;
 kicker_motor = 127;
 chassis.setPose(35, -55, 0); //set robots starting position
 chassis.moveToPoint(25.75, -4, 5000);
-waitUntilBall(5000);
+waitUntilBall(2500);
 chassis.cancelMotion();
 kicker_motor = 0;
 
@@ -27,7 +27,7 @@ chassis.waitUntilDone();
 chassis.setPose(chassis_x, chassis_y, chassis.getPose().theta);
 intake_motor = 127;
 chassis.moveToPoint(35, -63, 5000);
-waitUntilBall(3000);
+waitUntilBall(2500);
 chassis.cancelMotion();
 
 //descore side ball

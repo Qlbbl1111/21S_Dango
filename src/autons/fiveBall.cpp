@@ -6,7 +6,7 @@ intake_motor = 127;
 kicker_motor = 127;
 chassis.setPose(35, -55, 0); //set robots starting position
 chassis.moveToPoint(25.75, -4, 5000);
-waitUntilBall(5000);
+waitUntilBall(2500);
 chassis.cancelMotion();
 kicker_motor = 0;
 
@@ -63,7 +63,7 @@ chassis.turnToPoint(9, -26, 1000,{.minSpeed=20});
 chassis.waitUntilDone();
 chassis.moveToPoint(9, -26, 5000);
 chassis.waitUntil(11);
-waitUntilBall(3000);
+waitUntilBall(2500);
 chassis.cancelMotion();
 
 //score in front - 5 ball
@@ -71,12 +71,12 @@ chassis.moveToPoint(18, -4, 3000);
 chassis.waitUntilDone();
 chassis.turnToHeading(90, 1000);
 chassis.waitUntilDone();
-wings.set_value(true);
+front_wings(true);
 intake_motor = -127;
 chassis.moveToPoint(45, -4, 3000);
 chassis.waitUntilDone();
 chassis.moveToPoint(40, -4, 1000, {.forwards = false});
 chassis.waitUntilDone();
 intake_motor = 0;
-wings.set_value(false);
+front_wings(false);
 }

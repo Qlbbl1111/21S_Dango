@@ -7,17 +7,19 @@ chassis.setPose(-35, -55, 0); //set robots starting position
 intake_motor = 127;
 kicker_motor = 127;
 chassis.moveToPoint(-25, -8, 5000); //move to intake middle ball (fig.A)
-waitUntilBall(3000);
+waitUntilBall(2500);
 chassis.cancelMotion();
 kicker_motor = 0;
 
 //push over
-chassis.turnToPoint(-8, -9, 1000); //turn to face the bar
+chassis.moveToPoint(-25, -15, 1500, {.forwards=false});
 chassis.waitUntilDone();
-wings.set_value(true);
-chassis.moveToPoint(-8, -9, 5000); //move to push over middle ball and middle bar ball (fig.A and fig.B)
+chassis.turnToHeading(90, 1000); //turn to face the bar
 chassis.waitUntilDone();
-wings.set_value(false);
+front_wings(true);
+chassis.moveToPoint(-8, -15, 3000); //move to push over middle ball and middle bar ball (fig.A and fig.B)
+chassis.waitUntilDone();
+front_wings(false);
 //go to matchload bar
 chassis.turnToPoint(-41, -46, 1000); // turn to face the matchload bar
 chassis.waitUntilDone();

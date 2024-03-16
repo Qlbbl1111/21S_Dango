@@ -144,7 +144,6 @@ void opcontrol() {
 		setIntake();
 		setKicker();
 		setWings();
-    setBarHang();
 		pros::delay(10);
 	}
 }

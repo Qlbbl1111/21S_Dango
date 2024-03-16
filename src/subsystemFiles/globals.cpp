@@ -25,8 +25,8 @@ pros::Rotation kickerRot(7);
 pros::ADIDigitalIn autoSwitch('A');
 
 // PNUEMATICS
-pros::ADIDigitalOut wings('H');
-pros::ADIDigitalOut bar_hang('G');
+pros::ADIDigitalOut front_wing_R('H');
+pros::ADIDigitalOut front_wing_L('G');
 pros::ADIDigitalOut back_wing_R('F');
 pros::ADIDigitalOut back_wing_L('E');
 
