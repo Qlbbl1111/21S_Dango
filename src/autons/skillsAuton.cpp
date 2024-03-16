@@ -50,11 +50,9 @@ void skillsAuton() {
     chassis.moveToPoint(-21, 35, 3000);
     chassis.waitUntilDone();
     front_wing_L.set_value(false);
-    chassis.moveToPoint(-21, 28, 2000, {.forwards = false, .minSpeed=70});
-    chassis.waitUntilDone();
 
     //drive around
-    chassis.moveToPoint(-21, 28, 2500, {.forwards = false});
+    chassis.moveToPoint(-21, 24, 2500, {.forwards = false});
     chassis.waitUntilDone();
     intake_motor = -127;
     chassis.moveToPoint(-49, 40, 3000, {.minSpeed=20});
@@ -96,7 +94,7 @@ void skillsAuton() {
     chassis.turnToPoint(22, 12, 1000, {.forwards = false, .minSpeed=20});
     chassis.waitUntilDone();
     back_wings(true);
-    chassis.moveToPose(41, 9, 270, 3000, {.forwards=false, .maxSpeed=100});
+    chassis.moveToPose(41, 9, 270, 2000, {.forwards=false, .maxSpeed=100});
     chassis.waitUntilDone();
     chassis.moveToPoint(33, 9, 1000);
     chassis.waitUntilDone();
