@@ -36,7 +36,7 @@ okapi::ControllerButton motor_temp_button(okapi::ControllerDigital::X);
  * All other competition modes are blocked by initialize; it is recommended
  * to keep execution time for this mode under a few seconds.
  */
-bool testing = true;
+bool testing = false;
 void initialize() {
 	pros::lcd::initialize();
 	chassis.calibrate();

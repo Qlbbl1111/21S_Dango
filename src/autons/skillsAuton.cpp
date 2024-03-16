@@ -14,25 +14,23 @@ void skillsAuton() {
     chassis.waitUntilDone();
     chassis.moveToPoint(-60, -30, 2000, {.forwards = false, .minSpeed=70});
     chassis.waitUntilDone();
-    chassis.moveToPoint(-60, -37, 2000);
+    chassis.moveToPoint(-60, -37, 2000, {.minSpeed = 20});
     chassis.waitUntilDone();
     //shoot
     chassis.setBrakeMode(pros::E_MOTOR_BRAKE_HOLD);
-    kicker_motor = 127;
-    chassis.moveToPoint(-60, -45, 2000);
+    chassis.moveToPoint(-60, -45, 2000,{.minSpeed = 20});
     chassis.waitUntilDone();
-    chassis.moveToPose(-65.7, -46.5, 70, 2000, {.forwards = false}); //postion the robot to touch bar for match loading
+    chassis.moveToPose(-65.7, -46.5, 70, 1000, {.forwards = false}); //postion the robot to touch bar for match loading
     chassis.waitUntilDone();
     back_wing_R.set_value(true); //make sure the robot is touching the bar
-    left_side_motors = -50;
-    right_side_motors = -50;
-    pros::delay(500);
+    kicker_motor = 127;
+    left_side_motors = -70;
+    right_side_motors = -70;
+    pros::delay(250);
     left_side_motors = 0;
     right_side_motors = 0;
-    float chassis_x = chassis.getPose().x;
-    float chassis_y = chassis.getPose().y;
     float chassis_theta = chassis.getPose().theta;
-    std::cout << "pos:" << chassis.getPose().theta <<", " << chassis_theta << "\n";
+    //std::cout << "pos:" << chassis.getPose().theta <<", " << chassis_theta << "\n";
     pros::delay(24000); //run the kicker for 24 seconds to matchload all 44 balls
     kicker_motor = 0;
     chassis.setPose(chassis.getPose().x, chassis.getPose().y, chassis_theta);
@@ -43,40 +41,40 @@ void skillsAuton() {
 
     //push balls over
     intake_motor = -127;
-    chassis.moveToPoint(-21, -35, 3000, {.maxSpeed=80});
+    chassis.moveToPoint(-21, -35, 3000, {.minSpeed=20});
     chassis.waitUntilDone();
     //chassis.setPose(chassis.getPose().x, chassis.getPose().y, 90);
-    chassis.turnToHeading(0, 1000);
+    chassis.turnToHeading(0, 1000, {.minSpeed=20});
     chassis.waitUntilDone();
     front_wing_L.set_value(true);
-    chassis.moveToPoint(-21, 33, 3000);
-    chassis.waitUntilDone();
-    chassis.moveToPoint(-21, 28, 2000, {.forwards = false, .minSpeed=70});
+    chassis.moveToPoint(-21, 35, 3000);
     chassis.waitUntilDone();
     front_wing_L.set_value(false);
-    chassis.moveToPoint(-21, 39, 2000);
+    chassis.moveToPoint(-21, 28, 2000, {.forwards = false, .minSpeed=70});
     chassis.waitUntilDone();
 
     //drive around
     chassis.moveToPoint(-21, 28, 2500, {.forwards = false});
     chassis.waitUntilDone();
     intake_motor = -127;
-    chassis.moveToPoint(-49, 40, 3000);
+    chassis.moveToPoint(-49, 40, 3000, {.minSpeed=20});
     chassis.waitUntilDone();
-    chassis.turnToHeading(0, 1000);
+    chassis.turnToHeading(0, 1500, {.minSpeed=20});
     chassis.waitUntilDone();
-    chassis.moveToPoint(-40, 60, 3000);
+    chassis.moveToPoint(-40, 60, 3000, {.minSpeed=20});
     chassis.waitUntilDone();
-    chassis.turnToHeading(90, 1000);
+    chassis.turnToHeading(90, 1500, {.minSpeed=20});
     chassis.waitUntilDone();
     front_wings(false);
-    chassis.moveToPoint(24, 60, 4000);
+    chassis.moveToPoint(24, 60, 4000, {.minSpeed=20});
     chassis.waitUntilDone();
     front_wings(false);
     intake_motor = 0;
 
     //score left side
     chassis.turnToHeading(90, 1000, {.forwards = false});
+    chassis.waitUntilDone();
+    chassis.moveToPoint(48, 51, 2000, {.forwards=false, .maxSpeed=100, .minSpeed=20});
     chassis.waitUntilDone();
     chassis.moveToPose(61, 27, 0, 4000, {.forwards=false, .minSpeed=70});
     chassis.waitUntil(12);
@@ -95,7 +93,7 @@ void skillsAuton() {
     chassis.waitUntilDone();
     chassis.moveToPoint(13, 28, 2000);
     chassis.waitUntilDone();
-    chassis.turnToPoint(22, 12, 1000, {.forwards = false});
+    chassis.turnToPoint(22, 12, 1000, {.forwards = false, .minSpeed=20});
     chassis.waitUntilDone();
     back_wings(true);
     chassis.moveToPose(41, 9, 270, 3000, {.forwards=false, .maxSpeed=100});
