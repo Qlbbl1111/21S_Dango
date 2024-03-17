@@ -6,9 +6,10 @@ chassis.setPose(-35, -55, 0); //set robots starting position
 //steal mid ball
 intake_motor = 127;
 kicker_motor = 127;
-chassis.moveToPoint(-25, -8, 5000); //move to intake middle ball (fig.A)
-waitUntilBall(2500);
-chassis.cancelMotion();
+chassis.moveToPoint(-25, -8, 2000); //move to intake middle ball (fig.A)
+chassis.waitUntilDone();
+//waitUntilBall(2500);
+//chassis.cancelMotion();
 kicker_motor = 0;
 
 //push over
@@ -21,9 +22,9 @@ chassis.moveToPoint(-8, -15, 3000); //move to push over middle ball and middle b
 chassis.waitUntilDone();
 front_wings(false);
 //go to matchload bar
-chassis.turnToPoint(-41, -46, 1000); // turn to face the matchload bar
+chassis.turnToPoint(-43, -48, 1000); // turn to face the matchload bar
 chassis.waitUntilDone();
-chassis.moveToPoint(-41, -46, 3000); //move to the matchload bar (fig.C)
+chassis.moveToPoint(-43, -48, 3000); //move to the matchload bar (fig.C)
 chassis.waitUntilDone();
 intake_motor = 0;
 //descore
@@ -32,12 +33,12 @@ chassis.turnToPoint(-33, -55, 1000);
 chassis.waitUntilDone();
 chassis.moveToPoint(-33, -55, 3000);
 chassis.waitUntilDone();
-chassis.turnToPoint(-25, -11, 1000, {.maxSpeed = 127}); //spin to remove the matchload zone ball for AWP (fig.D)
+chassis.turnToHeading(50, 1000); //spin to remove the matchload zone ball for AWP (fig.D)
+chassis.waitUntilDone();
+chassis.turnToHeading(90, 1000); //spin to remove the matchload zone ball for AWP (fig.D)
 chassis.waitUntilDone();
 back_wing_R.set_value(false);
 //touch elevation bar
-chassis.turnToPoint(0, -55, 1000);
-chassis.waitUntilDone();
 //pros::delay(1000); //wait for some time to let our allaince finish their auton
 chassis.moveToPoint(-4, -55, 5000); //move to touch the elevation bar (fig.E)
 chassis.waitUntilDone();

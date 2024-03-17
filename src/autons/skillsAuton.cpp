@@ -5,7 +5,7 @@
 void skillsAuton() {
     chassis.setPose(-48, -59.75, 135); //set robots starting position
 
-    //score the 2 red preloads in the side of the blue goal
+    //score the 1 red preload in the side of the blue goal
     kicker_motor = 127;
     chassis.moveToPoint(-60, -45, 2000, {.forwards = false, .minSpeed=20});
     chassis.waitUntilDone();
@@ -29,6 +29,7 @@ void skillsAuton() {
     pros::delay(250);
     left_side_motors = 0;
     right_side_motors = 0;
+    chassis.cancelAllMotions();
     float chassis_theta = chassis.getPose().theta;
     //std::cout << "pos:" << chassis.getPose().theta <<", " << chassis_theta << "\n";
     pros::delay(24000); //run the kicker for 24 seconds to matchload all 44 balls
@@ -72,29 +73,28 @@ void skillsAuton() {
     //score left side
     chassis.turnToHeading(90, 1000, {.forwards = false});
     chassis.waitUntilDone();
-    chassis.moveToPoint(48, 51, 2000, {.forwards=false, .maxSpeed=100, .minSpeed=20});
+    chassis.moveToPoint(59.5, 42, 2000, {.forwards=false, .maxSpeed=100, .minSpeed=20});
     chassis.waitUntilDone();
-    chassis.moveToPose(61, 27, 0, 4000, {.forwards=false, .minSpeed=70});
-    chassis.waitUntil(12);
-    back_wing_L.set_value(true);
-    chassis.waitUntilDone();
-    back_wings(false);
-    chassis.moveToPoint(61, 42, 1000);
-    chassis.waitUntilDone();
-    chassis.moveToPoint(61, 27, 2000, {.forwards = false, .minSpeed=70});
-    chassis.waitUntilDone();
-    chassis.waitUntilDone();
+    //chassis.moveToPose(61, 27, 0, 4000, {.forwards=false});
+   // chassis.waitUntil(12);
+   // back_wing_L.set_value(true);
+   // chassis.waitUntilDone();
+   // back_wings(false);
+    //chassis.moveToPoint(61, 42, 1000);
+  //  chassis.waitUntilDone();
+   // chassis.moveToPoint(61, 27, 2000, {.forwards = false, .minSpeed=70});
+    //chassis.waitUntilDone();
     //chassis.setPose(59.5, 27, 0);
 
     //score left front
-    chassis.moveToPoint(59.5, 42, 2000);
-    chassis.waitUntilDone();
+    //chassis.moveToPoint(59.5, 42, 2000);
+    //chassis.waitUntilDone();
     chassis.moveToPoint(13, 28, 2000);
     chassis.waitUntilDone();
     chassis.turnToPoint(22, 12, 1000, {.forwards = false, .minSpeed=20});
     chassis.waitUntilDone();
     back_wings(true);
-    chassis.moveToPose(41, 9, 270, 2000, {.forwards=false, .maxSpeed=100});
+    chassis.moveToPose(41, 9, 270, 2000, {.forwards=false});
     chassis.waitUntilDone();
     chassis.moveToPoint(33, 9, 1000);
     chassis.waitUntilDone();
@@ -109,10 +109,10 @@ void skillsAuton() {
     chassis.waitUntilDone();
     chassis.moveToPoint(13, -6, 2000, {.forwards = false});
     chassis.waitUntilDone();
-    chassis.turnToHeading(90, 1000, {.forwards = false, .maxSpeed = 100});
+    chassis.turnToHeading(90, 1000, {.forwards = false});
     chassis.waitUntilDone();
     back_wings(true);
-    chassis.moveToPoint(41, -6, 2000, {.forwards = false, .maxSpeed = 100});
+    chassis.moveToPoint(41, -6, 2000, {.forwards = false});
     chassis.waitUntilDone();
     chassis.moveToPoint(31, -6, 1000);
     chassis.waitUntilDone();
@@ -127,10 +127,10 @@ void skillsAuton() {
     chassis.waitUntilDone();
     chassis.moveToPoint(14, -30, 2000, {.maxSpeed = 100});
     chassis.waitUntilDone();
-    chassis.turnToPoint(30, -14, 1000, {.forwards = false, .maxSpeed = 100});
+    chassis.turnToPoint(30, -14, 1000, {.forwards = false});
     chassis.waitUntilDone();
     back_wings(true);
-    chassis.moveToPose(42, -14, 270, 3000, {.forwards=false, .maxSpeed=100});
+    chassis.moveToPose(42, -14, 270, 3000, {.forwards=false});
     chassis.waitUntilDone();
     chassis.moveToPoint(30, -14, 1000);
     chassis.waitUntilDone();
